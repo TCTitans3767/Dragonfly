@@ -5,6 +5,7 @@ import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkBaseConfig;
 import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
@@ -22,21 +23,22 @@ public class Drivetrain extends SubsystemBase {
 
     // motor config
     SparkMaxConfig globalConfig = new SparkMaxConfig();
-    SparkMaxConfig leftConfig = new SparkMaxConfig();
+    SparkMaxConfig leftLeader = new SparkMaxConfig();
     SparkMaxConfig leftFollowerConfig = new SparkMaxConfig();
-    SparkMaxConfig rightConfig = new SparkMaxConfig();
+    SparkMaxConfig rightLeader = new SparkMaxConfig();
     SparkMaxConfig rightFollowerConfig = new SparkMaxConfig();
 
     public Drivetrain() {
 
+        // setting global config
         globalConfig.smartCurrentLimit(40);
         globalConfig.idleMode(IdleMode.kCoast);
 
 
         // left front
         leftFront = new SparkMax(2, MotorType.kBrushless);
-        leftConfig.apply(globalConfig);
-        leftConfig.inverted(true);
+        leftLeader.apply(globalConfig);
+        leftLeader.inverted(true);
 
         // left back
         leftBack = new SparkMax(3, MotorType.kBrushless);
@@ -45,13 +47,26 @@ public class Drivetrain extends SubsystemBase {
 
         // right front
         rightFront = new SparkMax(4, MotorType.kBrushless);
-        rightConfig.apply(globalConfig);
+        rightLeader.apply(globalConfig);
 
         // right back
         rightBack = new SparkMax(5, MotorType.kBrushless);
         rightFollowerConfig.apply(globalConfig);
         rightFollowerConfig.follow(rightFront);
 
+        /*
+         * come back to this
+         * 
+         * it is important
+         * I also dont really understnad it
+         */
+
+
+        // asigning the motor configs
+        leftFront.configure(globalConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        leftBack.configure(leftFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        rightFront.configure(rightLeader, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        rightBack.configure(rightFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     }
 
     @Override
