@@ -15,4 +15,20 @@ public class ArcadeDrive extends Command {
         this.turnSpeed = turnSpeed;
         addRequirements(drivetrain);
     }
+
+    @Override
+    public void execute() {
+        drivetrain.arcadeDrive(forwardSpeed.get(), turnSpeed.get());
+    }
+
+    @Override
+    public void end(boolean isInterrupted) {
+        drivetrain.arcadeDrive(0, 0);
+    }
+
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
+
 }

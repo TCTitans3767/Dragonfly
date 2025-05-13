@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
@@ -20,6 +21,9 @@ public class Drivetrain extends SubsystemBase {
     private final SparkMax leftBack;
     private final SparkMax rightFront;
     private final SparkMax rightBack;
+
+    // utils
+    public final DifferentialDrive differentialDrive;
 
     // motor config
     SparkMaxConfig globalConfig = new SparkMaxConfig();
@@ -54,6 +58,9 @@ public class Drivetrain extends SubsystemBase {
         rightFollowerConfig.apply(globalConfig);
         rightFollowerConfig.follow(rightFront);
 
+        // differential drive
+        differentialDrive = new DifferentialDrive(leftFront, rightFront);
+
         /*
          * come back to this
          * 
@@ -74,6 +81,11 @@ public class Drivetrain extends SubsystemBase {
     public void periodic() {
         // This method will be called once per scheduler run
         // Add code to update the drivetrain state here
+    }
+
+    // Drive methods
+    public void arcadeDrive(double forwardSpeed, double turnSpeed) {
+        differentialDrive.arcadeDrive(forwardSpeed, turnSpeed);
     }
 
 }
