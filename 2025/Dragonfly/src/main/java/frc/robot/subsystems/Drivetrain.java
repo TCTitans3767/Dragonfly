@@ -59,6 +59,7 @@ public class Drivetrain extends SubsystemBase {
          * 
          * it is important
          * I also dont really understnad it
+         * make sure everything is set to KBrushless
          */
 
 
