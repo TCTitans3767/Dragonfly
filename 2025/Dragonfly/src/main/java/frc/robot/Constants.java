@@ -20,5 +20,10 @@ public final class Constants {
   public static class ValveConstants {
     public static final double targetPressure = 60.0; // psi
     public static final long shootTime = 500; // millisseconds
+
+    public static final int pneumaticHubID = 10; // ID for the Pneumatic Hub
+    public static final int fillSolenoidID = 1; // ID for the fill solenoid
+    public static final int shootSolenoidID = 2; // ID for the shoot solenoid
+    public static final int pressureSensorID = 0; // ID for the pressure sensor
   }
 }
