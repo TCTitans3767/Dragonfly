@@ -45,7 +45,6 @@ public class Valves extends SubsystemBase {
     }
 
     public void closeFill() {
-
         this.fillSolenoid.set(false ^ !ValveConstants.isFillNC);
         this.isFillOpen = false;
     }
