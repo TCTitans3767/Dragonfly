@@ -7,7 +7,10 @@ public class Shoot extends Command {
     private final Valves valves;
     private final long startTime;
 
-    public Shoot(Valves valves) {
+    private boolean activated = false;
+
+    public Shoot(Valves valves, boolean activated) {
+        this.activated = activated;
         this.valves = valves;
         this.startTime = System.currentTimeMillis();
         addRequirements(valves);
@@ -16,7 +19,7 @@ public class Shoot extends Command {
     @Override
     public void initialize() {
         // Open the shoot valve to start shooting
-        if (!valves.isShootOpen && !valves.isFillOpen) {
+        if (!valves.isShootOpen && !valves.isFillOpen && activated) {
             valves.openShoot();
         }
     }
@@ -24,10 +27,12 @@ public class Shoot extends Command {
     @Override
     public void execute() {
         // Check if target time has passed
-        if (System.currentTimeMillis() - startTime >= ValveConstants.shootTime) {
-            // Close the shoot valve after the target time
-            valves.closeShoot();
-            end(true);
+        if (activated && valves.isShootOpen) {
+            if (System.currentTimeMillis() - startTime >= ValveConstants.shootTime) {
+                // Close the shoot valve after the target time
+                valves.closeShoot();
+                end(true);
+            }
         }
     }
 
