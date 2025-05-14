@@ -1,5 +1,8 @@
 package frc.robot.subsystems;
 
+import frc.robot.Constants;
+import frc.robot.Constants.OperatorConstants;
+
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.spark.SparkMax;
@@ -37,21 +40,21 @@ public class Drivetrain extends SubsystemBase {
 
 
         // left front
-        leftFront = new SparkMax(2, MotorType.kBrushless);
+        leftFront = new SparkMax(OperatorConstants.leftBackMotor, MotorType.kBrushless);
         leftLeader.apply(globalConfig);
         leftLeader.inverted(true);
 
         // left back
-        leftBack = new SparkMax(3, MotorType.kBrushless);
+        leftBack = new SparkMax(OperatorConstants.leftBackMotor, MotorType.kBrushless);
         leftFollowerConfig.apply(globalConfig);
         leftFollowerConfig.follow(leftFront);
 
         // right front
-        rightFront = new SparkMax(4, MotorType.kBrushless);
+        rightFront = new SparkMax(OperatorConstants.rightFrontMotor, MotorType.kBrushless);
         rightLeader.apply(globalConfig);
 
         // right back
-        rightBack = new SparkMax(5, MotorType.kBrushless);
+        rightBack = new SparkMax(OperatorConstants.rightBackMotor, MotorType.kBrushless);
         rightFollowerConfig.apply(globalConfig);
         rightFollowerConfig.follow(rightFront);
 
