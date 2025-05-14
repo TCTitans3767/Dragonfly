@@ -17,7 +17,7 @@ public class Fill extends Command {
     @Override
     public void initialize() {
         // Open the fill valve to start filling
-        if (!valves.isFillOpen() && !valves.isShootOpen()) {
+        if (!valves.isFillOpen && !valves.isShootOpen) {
             valves.openFill();
         }
     }

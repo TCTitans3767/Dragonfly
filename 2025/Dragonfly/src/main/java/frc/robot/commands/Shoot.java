@@ -5,12 +5,10 @@ import frc.robot.Constants.ValveConstants;
 
 public class Shoot extends Command {
     private final Valves valves;
-    private final double targetPressure;
     private final long startTime;
 
-    public Shoot(Valves valves, double targetPressure) {
+    public Shoot(Valves valves) {
         this.valves = valves;
-        this.targetPressure = targetPressure;
         this.startTime = System.currentTimeMillis();
         addRequirements(valves);
     }
@@ -18,7 +16,7 @@ public class Shoot extends Command {
     @Override
     public void initialize() {
         // Open the shoot valve to start shooting
-        if (!valves.isShootOpen() && !valves.isFillOpen()) {
+        if (!valves.isShootOpen && !valves.isFillOpen) {
             valves.openShoot();
         }
     }

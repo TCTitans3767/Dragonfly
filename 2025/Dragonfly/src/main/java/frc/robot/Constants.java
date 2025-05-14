@@ -25,5 +25,8 @@ public final class Constants {
     public static final int fillSolenoidID = 1; // ID for the fill solenoid
     public static final int shootSolenoidID = 2; // ID for the shoot solenoid
     public static final int pressureSensorID = 0; // ID for the pressure sensor
+
+    public static final boolean isFillNC = true; // Normally closed
+    public static final boolean isShootNC = true; // Normally closed
   }
 }
