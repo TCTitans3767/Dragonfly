@@ -27,9 +27,9 @@ public class Drivetrain extends SubsystemBase {
 
     // motor config
     SparkMaxConfig globalConfig = new SparkMaxConfig();
-    SparkMaxConfig leftLeader = new SparkMaxConfig();
+    SparkMaxConfig leftLeaderConfig = new SparkMaxConfig();
     SparkMaxConfig leftFollowerConfig = new SparkMaxConfig();
-    SparkMaxConfig rightLeader = new SparkMaxConfig();
+    SparkMaxConfig rightLeaderConfig = new SparkMaxConfig();
     SparkMaxConfig rightFollowerConfig = new SparkMaxConfig();
 
     public Drivetrain() {
@@ -41,8 +41,8 @@ public class Drivetrain extends SubsystemBase {
 
         // left front
         leftFront = new SparkMax(OperatorConstants.leftBackMotor, MotorType.kBrushless);
-        leftLeader.apply(globalConfig);
-        leftLeader.inverted(true);
+        leftLeaderConfig.apply(globalConfig);
+        leftLeaderConfig.inverted(true);
 
         // left back
         leftBack = new SparkMax(OperatorConstants.leftBackMotor, MotorType.kBrushless);
@@ -51,7 +51,7 @@ public class Drivetrain extends SubsystemBase {
 
         // right front
         rightFront = new SparkMax(OperatorConstants.rightFrontMotor, MotorType.kBrushless);
-        rightLeader.apply(globalConfig);
+        rightLeaderConfig.apply(globalConfig);
 
         // right back
         rightBack = new SparkMax(OperatorConstants.rightBackMotor, MotorType.kBrushless);
@@ -71,9 +71,9 @@ public class Drivetrain extends SubsystemBase {
 
 
         // asigning the motor configs
-        leftFront.configure(globalConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        leftFront.configure(leftLeaderConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         leftBack.configure(leftFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-        rightFront.configure(rightLeader, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        rightFront.configure(rightLeaderConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         rightBack.configure(rightFollowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
     }
 
