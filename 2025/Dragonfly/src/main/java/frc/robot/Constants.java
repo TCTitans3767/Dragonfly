@@ -26,8 +26,8 @@ public final class Constants {
     public static final long shootTime = 500; // milliseconds
 
     public static final int pneumaticHubID = 10; // ID for the Pneumatic Hub
-    public static final int fillSolenoidID = 1; // ID for the fill solenoid
-    public static final int shootSolenoidID = 2; // ID for the shoot solenoid
+    public static final int fillSolenoidID = 0; // ID for the fill solenoid
+    public static final int shootSolenoidID = 5; // ID for the shoot solenoid
     public static final int pressureSensorID = 0; // ID for the pressure sensor
 
     public static final boolean isFillNC = true; // Normally closed

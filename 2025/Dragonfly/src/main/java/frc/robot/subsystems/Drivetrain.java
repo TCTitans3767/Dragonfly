@@ -39,7 +39,7 @@ public class Drivetrain extends SubsystemBase {
 
 
         // left front
-        leftFront = new SparkMax(OperatorConstants.leftBackMotor, MotorType.kBrushless);
+        leftFront = new SparkMax(OperatorConstants.leftFrontMotor, MotorType.kBrushless);
         leftLeaderConfig.apply(globalConfig);
         leftLeaderConfig.inverted(true);
 
@@ -51,7 +51,6 @@ public class Drivetrain extends SubsystemBase {
         // right front
         rightFront = new SparkMax(OperatorConstants.rightFrontMotor, MotorType.kBrushless);
         rightLeaderConfig.apply(globalConfig);
-
         // right back
         rightBack = new SparkMax(OperatorConstants.rightBackMotor, MotorType.kBrushless);
         rightFollowerConfig.apply(globalConfig);

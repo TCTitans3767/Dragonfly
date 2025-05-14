@@ -38,15 +38,17 @@ public class Valves extends SubsystemBase {
     }
 
     public void openFill() {
-        if (this.canFill && !this.isShootOpen) {
-            this.fillSolenoid.set(true ^ !ValveConstants.isFillNC);
-            this.isFillOpen = true;
-        }
+        // if (this.canFill && !this.isShootOpen) {
+        //     this.fillSolenoid.set(true ^ !ValveConstants.isFillNC);
+        //     this.isFillOpen = true;
+        // }
+        this.fillSolenoid.set(true);
     }
 
     public void closeFill() {
-        this.fillSolenoid.set(false ^ !ValveConstants.isFillNC);
-        this.isFillOpen = false;
+        // this.fillSolenoid.set(false ^ !ValveConstants.isFillNC);
+        // this.isFillOpen = false;
+        this.fillSolenoid.set(false);
     }
 
     public void openShoot() {

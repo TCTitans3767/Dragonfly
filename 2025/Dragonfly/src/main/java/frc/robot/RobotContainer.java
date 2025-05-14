@@ -26,7 +26,7 @@ public class RobotContainer {
   public final Valves valves = new Valves();
 
   // is this needed?
-  public final Joystick driver = new Joystick(0);
+  // public final Joystick driver = new Joystick(0);
 
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -50,6 +50,6 @@ public class RobotContainer {
   */
 
   public void setDefaltCommands() {
-    drivetrain.setDefaultCommand(new ArcadeDrive(() -> -driver.getRawAxis(0), () -> -driver.getRawAxis(1), drivetrain));
+    drivetrain.setDefaultCommand(new ArcadeDrive(() -> -m_driverController.getRawAxis(1), () -> -m_driverController.getRawAxis(0), drivetrain));
   }
 }
