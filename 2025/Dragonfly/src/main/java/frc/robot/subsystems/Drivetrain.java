@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-import frc.robot.Constants;
 import frc.robot.Constants.OperatorConstants;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
