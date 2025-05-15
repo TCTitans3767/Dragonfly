@@ -4,11 +4,16 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.PneumaticHub;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.Valves;
+import frc.robot.Constants.ValveConstants;
 // import frc.robot.subsystems.Drivetrain;
-// import frc.robot.subsystems.Valves;
+// import frc.robot.subsystems.Valves.openFill;
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -16,6 +21,14 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * this project, you must also update the Main.java file in the project.
  */
 public class Robot extends TimedRobot {
+
+  // private static final int PH_CAN_ID = 10;
+  // private static final int SOLENOID_CHANNEL = 0;
+  PneumaticHub m_pH = new PneumaticHub(10);
+  Solenoid fillSolenoid = m_pH.makeSolenoid(5);
+  Solenoid shootSolenoid = m_pH.makeSolenoid(0);
+
+
 
   private final RobotContainer m_robotContainer;
 
@@ -43,6 +56,9 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    // m_robotContainer.valves.openFill();
+    // m_robotContainer.valves.openShoot();
+    
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -59,15 +75,32 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    // m_robotContainer.valves.openFill();
+    // m_robotContainer.valves.openShoot();
+  }
 
   @Override
   public void teleopInit() {
+
+    
   }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+
+    SmartDashboard.putNumber("pressure", m_pH.getPressure(Constants.ValveConstants.pressureSensorID));
+
+    // fillSolenoid.set(m_robotContainer.m_driverController.a().getAsBoolean());
+    shootSolenoid.set(m_robotContainer.m_driverController.b().getAsBoolean());
+    fillSolenoid.set(m_robotContainer.m_driverController.a().getAsBoolean());
+    // if (m_pH.getPressure(ValveConstants.pressureSensorID) <= ValveConstants.targetPressure && m_robotContainer.m_driverController.a().getAsBoolean()) {
+    //   fillSolenoid.set(true);
+    // } else {
+    //   fillSolenoid.set(false);
+    // }
+  }
 
   @Override
   public void testInit() {

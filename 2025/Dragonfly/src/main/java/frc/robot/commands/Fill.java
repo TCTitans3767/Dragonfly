@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Valves;
@@ -24,7 +25,7 @@ public class Fill extends Command {
         //     valves.openFill();
         // }
         valves.openFill();
-        testTime = System.currentTimeMillis();
+        // testTime = System.currentTimeMillis();
     }
 
     @Override
@@ -35,7 +36,7 @@ public class Fill extends Command {
         //     end(true);
         // }
         if (System.currentTimeMillis() - testTime >= Constants.ValveConstants.shootTime) {
-            valves.closeFill();
+            // valves.closeFill();
         }
     }
 
@@ -48,7 +49,7 @@ public class Fill extends Command {
     @Override
     public void end(boolean interrupted) {
         // Ensure the fill valve is closed when the command ends
-        valves.closeFill();
+        // valves.closeFill();
     }
     
 }

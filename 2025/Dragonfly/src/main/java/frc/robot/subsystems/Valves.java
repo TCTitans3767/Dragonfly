@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import frc.robot.Constants.ValveConstants;
@@ -9,8 +10,8 @@ import frc.robot.Constants.ValveConstants;
 public class Valves extends SubsystemBase {
 
     private final PneumaticHub pneumaticHub;
-    private final Solenoid fillSolenoid, shootSolenoid;
-    public boolean isFillOpen, isShootOpen, canFill;
+    public final Solenoid fillSolenoid, shootSolenoid;
+    public static boolean isFillOpen, isShootOpen, canFill;
     
     public Valves() {
         this.pneumaticHub = new PneumaticHub(ValveConstants.pneumaticHubID);
@@ -25,12 +26,12 @@ public class Valves extends SubsystemBase {
 
     @Override
     public void periodic() {
-        if (this.getPressure() >= ValveConstants.targetPressure) {
-            this.closeFill();
-            this.canFill = false;
-        } else {
-            this.canFill = true;
-        }
+        // if (this.getPressure() >= ValveConstants.targetPressure) {
+        //     this.closeFill();
+        //     this.canFill = false;
+        // } else {
+        //     this.canFill = true;
+        // }
     }
 
     public double getPressure() {
@@ -42,6 +43,7 @@ public class Valves extends SubsystemBase {
         //     this.fillSolenoid.set(true ^ !ValveConstants.isFillNC);
         //     this.isFillOpen = true;
         // }
+        SmartDashboard.putString("fill", "true");
         this.fillSolenoid.set(true);
     }
 
