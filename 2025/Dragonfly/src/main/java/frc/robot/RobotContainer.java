@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 public class RobotContainer {
 
   public final Drivetrain drivetrain = new Drivetrain();
-  // public final Valves valves = new Valves();
+  public final Valves valves = new Valves();
 
   
 
@@ -44,8 +44,8 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    // m_driverController.b().onTrue(new Fill(valves, ValveConstants.targetPressure));
-    // m_driverController.rightTrigger().onTrue(new Shoot(valves, m_driverController.a().getAsBoolean()));
+    m_driverController.b().onTrue(new Fill(valves, ValveConstants.targetPressure));
+    m_driverController.rightTrigger().onTrue(new Shoot(valves, m_driverController.a().getAsBoolean()));
   }
 
   /*
