@@ -21,22 +21,22 @@ public class Fill extends Command {
     @Override
     public void initialize() {
         // Open the fill valve to start filling
-        // if (!valves.isFillOpen && !valves.isShootOpen) {
-        //     valves.openFill();
-        // }
+        if (!valves.isFillOpen && !valves.isShootOpen) {
+            valves.openFill();
+        }
         valves.openFill();
-        // testTime = System.currentTimeMillis();
+        testTime = System.currentTimeMillis();
     }
 
     @Override
     public void execute() {
         // Check the current pressure and close the fill valve if the target is reached
-        // if (valves.getPressure() >= targetPressure) {
-        //     valves.closeFill();
-        //     end(true);
-        // }
+        if (valves.getPressure() >= targetPressure) {
+            valves.closeFill();
+            end(true);
+        }
         if (System.currentTimeMillis() - testTime >= Constants.ValveConstants.shootTime) {
-            // valves.closeFill();
+            valves.closeFill();
         }
     }
 
@@ -49,7 +49,7 @@ public class Fill extends Command {
     @Override
     public void end(boolean interrupted) {
         // Ensure the fill valve is closed when the command ends
-        // valves.closeFill();
+        valves.closeFill();
     }
     
 }

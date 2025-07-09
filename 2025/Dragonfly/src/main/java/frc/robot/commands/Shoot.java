@@ -19,21 +19,21 @@ public class Shoot extends Command {
     @Override
     public void initialize() {
         // Open the shoot valve to start shooting
-        // if (!valves.isShootOpen && !valves.isFillOpen && activated) {
+        if (!valves.isShootOpen && !valves.isFillOpen && activated) {
             valves.openShoot();
-        // }
+        }
     }
 
     @Override
     public void execute() {
         // Check if target time has passed
-        // if (activated && valves.isShootOpen) {
+        if (activated && valves.isShootOpen) {
             if (System.currentTimeMillis() - startTime >= ValveConstants.shootTime) {
                 // Close the shoot valve after the target time
                 valves.closeShoot();
                 end(true);
             }
-        // }
+        }
     }
 
     @Override

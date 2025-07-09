@@ -26,12 +26,12 @@ public class Valves extends SubsystemBase {
 
     @Override
     public void periodic() {
-        // if (this.getPressure() >= ValveConstants.targetPressure) {
-        //     this.closeFill();
-        //     this.canFill = false;
-        // } else {
-        //     this.canFill = true;
-        // }
+        if (this.getPressure() >= ValveConstants.targetPressure) {
+            this.closeFill();
+            this.canFill = false;
+        } else {
+            this.canFill = true;
+        }
     }
 
     public double getPressure() {
@@ -39,17 +39,17 @@ public class Valves extends SubsystemBase {
     }
 
     public void openFill() {
-        // if (this.canFill && !this.isShootOpen) {
-        //     this.fillSolenoid.set(true ^ !ValveConstants.isFillNC);
-        //     this.isFillOpen = true;
-        // }
+        if (this.canFill && !this.isShootOpen) {
+            this.fillSolenoid.set(true ^ !ValveConstants.isFillNC);
+            this.isFillOpen = true;
+        }
         SmartDashboard.putString("fill", "true");
         this.fillSolenoid.set(true);
     }
 
     public void closeFill() {
-        // this.fillSolenoid.set(false ^ !ValveConstants.isFillNC);
-        // this.isFillOpen = false;
+        this.fillSolenoid.set(false ^ !ValveConstants.isFillNC);
+        this.isFillOpen = false;
         this.fillSolenoid.set(false);
     }
 
