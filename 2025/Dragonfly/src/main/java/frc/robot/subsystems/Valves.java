@@ -26,6 +26,10 @@ public class Valves extends SubsystemBase {
 
     @Override
     public void periodic() {
+        /* 
+         * the way we are doing get pressure might be wrong but idk why it isn't mad at us
+         * also copilot auto completing comments is helarious
+        */
         if (this.getPressure() >= ValveConstants.targetPressure) {
             this.closeFill();
             this.canFill = false;
@@ -34,6 +38,9 @@ public class Valves extends SubsystemBase {
         }
     }
 
+    /*
+     * maybe not bc this medthod exists and makes sens AHH
+     */
     public double getPressure() {
         return this.pneumaticHub.getPressure(ValveConstants.pressureSensorID);
     }
