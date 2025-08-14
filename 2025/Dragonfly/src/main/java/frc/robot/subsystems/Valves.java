@@ -12,6 +12,7 @@ public class Valves extends SubsystemBase {
     private final PneumaticHub pneumaticHub;
     public final Solenoid fillSolenoid, shootSolenoid;
     public static boolean isFillOpen, isShootOpen, canFill;
+    // get rid of static maybe
     
     public Valves() {
         this.pneumaticHub = new PneumaticHub(ValveConstants.pneumaticHubID);
@@ -39,7 +40,8 @@ public class Valves extends SubsystemBase {
     }
 
     /*
-     * maybe not bc this medthod exists and makes sens AHH
+     * I think this is expacting an analog sensor
+     * is the sensor analog or digital?
      */
     public double getPressure() {
         return this.pneumaticHub.getPressure(ValveConstants.pressureSensorID);
